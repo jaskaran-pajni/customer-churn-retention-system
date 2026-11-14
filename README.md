@@ -17,41 +17,26 @@ An end-to-end machine learning demonstration that predicts potential telecom cus
 - **Batch & retention:** upload CSV or use six fictional examples, rank customers by an assumption-based expected-value calculation, export scored rows.
 - **Model diagnostics:** cross-validation results, holdout metrics, ROC/confusion matrix, and model feature signals.
 
-### Project workflow
-
-
 ## System Architecture
 
-
+```mermaid
 flowchart TD
-    A["IBM Telco Dataset"] --> B["Data Cleaning"]
-    B --> C["EDA & SQL Analysis"]
-    B --> D["80/20 Train-Test Split"]
-    D --> E["Preprocessing + 5-Fold CV"]
-    E --> F{"Model Comparison"}
-    F --> G["Logistic Regression"]
-    F --> H["Random Forest"]
-    G --> I["Model Selection"]
-    H --> I
-    I --> J["Holdout Evaluation"]
-    J --> K["Saved ML Pipeline"]
-    K --> L["Streamlit Dashboard"]
-    C --> L
-    L --> M["Churn Prediction"]
-    L --> N["Retention Analytics"]
-    L --> O["Model Diagnostics"]
+    A["IBM Telco CSV"] --> B["Validate & Clean"]
+    B --> C["EDA & SQLite Analysis"]
+    B --> D["Stratified 80/20 Split"]
+    D --> E["Preprocessing in 5-Fold CV"]
+    E --> F["Logistic Regression vs Random Forest"]
+    F --> G["Select by CV ROC-AUC"]
+    G --> H["Untouched Holdout Evaluation"]
+    H --> I["Saved Pipeline & Metrics"]
+    C --> J["Streamlit Dashboard"]
+    I --> J
+    J --> K["Customer Predictions"]
+    J --> L["Retention Scenarios"]
+    J --> M["Model Diagnostics"]
+```
 
-    classDef source fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
-    classDef model fill:#dcfce7,stroke:#16a34a,color:#14532d
-    classDef app fill:#f3e8ff,stroke:#9333ea,color:#581c87
-
-    class A,B source
-    class E,F,G,H,I,J,K model
-    class L,M,N,O app
-
-
-The pipeline fits preprocessing within cross-validation, selects the model on training data, and evaluates it once on an untouched holdout set. The retention simulator uses hypothetical assumptions rather than measured intervention effects.
-  
+The project compares models using training-only cross-validation, evaluates the selected model once on an untouched holdout set, and serves the saved pipeline through Streamlit. Retention scenarios use hypothetical assumptions, not measured intervention effects.
 
 ## Run locally
 
@@ -76,16 +61,21 @@ If you've already trained Day 2, you can keep your existing `models/` and `outpu
 
 Model selection: compare Logistic Regression and Random Forest using **stratified five-fold CV ROC-AUC on the training split only**; report precision, recall, F1, average precision, ROC-AUC, and confusion matrix on the untouched test split. The 0.50 holdout threshold is fixed for the reported confusion matrix.
 
-**Your exact, reproducible evaluation numbers are generated in `outputs/metrics.json`.** Add the values to this README only after you have run your own model; this template does not invent a ROC-AUC or claimed business ROI.
+Results from the committed [evaluation metrics](outputs/metrics.json), using a stratified 80/20 train/test split (5,634 training and 1,409 test customers):
 
-| Measure | Where to find it |
-| --- | --- |
-| Selected model | `outputs/metrics.json` → `model` |
-| Holdout ROC-AUC | `outputs/metrics.json` → `test_roc_auc` |
-| Holdout precision | `outputs/metrics.json` → `test_precision` |
-| Holdout recall | `outputs/metrics.json` → `test_recall` |
-| Holdout F1 | `outputs/metrics.json` → `test_f1` |
-| Confusion matrix | `outputs/charts/confusion_matrix.png` |
+| Metric | Measured result |
+| --- | ---: |
+| Selected model | Logistic Regression |
+| Training 5-fold CV ROC-AUC (selected model) | 0.846 |
+| Holdout ROC-AUC | 0.842 |
+| Holdout average precision | 0.634 |
+| Holdout precision (threshold 0.50) | 65.7% |
+| Holdout recall (threshold 0.50) | 55.9% |
+| Holdout F1 (threshold 0.50) | 0.604 |
+
+Confusion matrix (TN, FP, FN, TP): **926, 109, 165, 209**. [View confusion matrix](outputs/charts/confusion_matrix.png) · [View ROC curve](outputs/charts/roc_curve.png).
+
+These scores describe an IBM hypothetical dataset holdout, not real-world or future-period performance.
 
 ## Retention decision simulator (not measured uplift)
 
