@@ -22,30 +22,33 @@ An end-to-end machine learning demonstration that predicts potential telecom cus
 
 ## System Architecture
 
-```mermaid
+
 flowchart TD
-    A[IBM Telco Churn Dataset] --> B[Data Validation and Cleaning]
-    B --> C[Exploratory Data Analysis]
-    B --> D[SQLite Business Analysis]
-    B --> E[Stratified Train/Test Split]
-    E --> F[Preprocessing Pipeline]
-    F --> G[5-Fold Cross-Validation]
-    G --> H[Compare Logistic Regression and Random Forest]
-    H --> I[Select Best Model by CV ROC-AUC]
-    I --> J[Untouched Holdout Evaluation]
-    J --> K[Save Pipeline and Model Artifacts]
-    K --> L[Streamlit Dashboard]
-    C --> M[Customer Segment Summary]
-    D --> M
-    M --> L
-    J --> L
-    L --> N[Customer Overview]
-    L --> O[Single Customer Prediction]
-    L --> P[Batch Scoring and Retention Simulation]
-    L --> Q[Model Diagnostics]
-    R[GitHub Repository] --> S[Streamlit Community Cloud]
-    S --> L
-```
+    A["IBM Telco Dataset"] --> B["Data Cleaning"]
+    B --> C["EDA & SQL Analysis"]
+    B --> D["80/20 Train-Test Split"]
+    D --> E["Preprocessing + 5-Fold CV"]
+    E --> F{"Model Comparison"}
+    F --> G["Logistic Regression"]
+    F --> H["Random Forest"]
+    G --> I["Model Selection"]
+    H --> I
+    I --> J["Holdout Evaluation"]
+    J --> K["Saved ML Pipeline"]
+    K --> L["Streamlit Dashboard"]
+    C --> L
+    L --> M["Churn Prediction"]
+    L --> N["Retention Analytics"]
+    L --> O["Model Diagnostics"]
+
+    classDef source fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+    classDef model fill:#dcfce7,stroke:#16a34a,color:#14532d
+    classDef app fill:#f3e8ff,stroke:#9333ea,color:#581c87
+
+    class A,B source
+    class E,F,G,H,I,J,K model
+    class L,M,N,O app
+
 
 The pipeline fits preprocessing within cross-validation, selects the model on training data, and evaluates it once on an untouched holdout set. The retention simulator uses hypothetical assumptions rather than measured intervention effects.
   
