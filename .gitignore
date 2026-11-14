@@ -1,0 +1,38 @@
+# Virtual environments, Python caches, and local tooling
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+*.log
+
+# Credentials and local environment files
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.pem
+*.key
+
+# Do not publish original row-level data, arbitrary customer uploads,
+# scored individual records, or databases in your public portfolio repository.
+data/raw/*
+!data/raw/README.md
+data/processed/*
+outputs/*
+!outputs/README.md
+!outputs/metrics.json
+!outputs/feature_schema.json
+!outputs/segment_summary.csv
+!outputs/charts/
+outputs/charts/*
+!outputs/charts/confusion_matrix.png
+!outputs/charts/roc_curve.png
+
+# Only allow a model that YOU trained on the public IBM demonstration dataset.
+models/*
+!models/README.md
+!models/churn_pipeline.joblib

@@ -1,0 +1,14 @@
+dimension,segment,customers,churners,churn_rate
+Contract,Month-to-month,3875,1655,0.4270967741935484
+Contract,One year,1473,166,0.11269517990495587
+Contract,Two year,1695,48,0.02831858407079646
+InternetService,DSL,2421,459,0.1895910780669145
+InternetService,Fiber optic,3096,1297,0.4189276485788114
+InternetService,No,1526,113,0.07404980340760157
+tenure_segment,0–12 months,2186,1037,0.47438243366880145
+tenure_segment,13–36 months,1856,474,0.25538793103448276
+tenure_segment,37+ months,3001,358,0.11929356881039653
+PaymentMethod,Bank transfer (automatic),1544,258,0.16709844559585493
+PaymentMethod,Credit card (automatic),1522,232,0.15243101182654403
+PaymentMethod,Electronic check,2365,1071,0.4528541226215645
+PaymentMethod,Mailed check,1612,308,0.19106699751861042

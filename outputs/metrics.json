@@ -1,0 +1,37 @@
+{
+  "model": "Logistic Regression",
+  "selection_metric": "5-fold cross-validated training ROC-AUC",
+  "cross_validation": {
+    "Majority baseline": {
+      "mean_roc_auc": 0.5,
+      "std_roc_auc": 0.0
+    },
+    "Logistic Regression": {
+      "mean_roc_auc": 0.846128002903009,
+      "std_roc_auc": 0.01251188902211612
+    },
+    "Random Forest": {
+      "mean_roc_auc": 0.8414405777838185,
+      "std_roc_auc": 0.007941025835019011
+    }
+  },
+  "holdout_threshold": 0.5,
+  "train_rows": 5634,
+  "test_rows": 1409,
+  "test_positive_rate": 0.2654364797728886,
+  "test_roc_auc": 0.8418713994161565,
+  "test_average_precision": 0.6338135969389643,
+  "test_precision": 0.6572327044025157,
+  "test_recall": 0.5588235294117647,
+  "test_f1": 0.6040462427745664,
+  "confusion_matrix_labels_0_1": [
+    [
+      926,
+      109
+    ],
+    [
+      165,
+      209
+    ]
+  ]
+}
