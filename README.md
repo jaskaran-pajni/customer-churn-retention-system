@@ -19,18 +19,36 @@ An end-to-end machine learning demonstration that predicts potential telecom cus
 
 ### Project workflow
 
-```text
-IBM demonstration CSV
-    → data validation + exploratory analysis
-    → SQLite business queries
-    → stratified train/test split (80/20)
-    → preprocessing WITHIN stratified 5-fold CV
-    → compare Logistic Regression and Random Forest by CV ROC-AUC
-    → evaluate chosen model once on untouched holdout
-    → save sklearn Pipeline + feature schema + evaluation artifacts
-    → serve read-only predictions through Streamlit
-    → simulate retention priorities with clearly hypothetical assumptions
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    A[IBM Telco Churn Dataset] --> B[Data Validation and Cleaning]
+    B --> C[Exploratory Data Analysis]
+    B --> D[SQLite Business Analysis]
+    B --> E[Stratified Train/Test Split]
+    E --> F[Preprocessing Pipeline]
+    F --> G[5-Fold Cross-Validation]
+    G --> H[Compare Logistic Regression and Random Forest]
+    H --> I[Select Best Model by CV ROC-AUC]
+    I --> J[Untouched Holdout Evaluation]
+    J --> K[Save Pipeline and Model Artifacts]
+    K --> L[Streamlit Dashboard]
+    C --> M[Customer Segment Summary]
+    D --> M
+    M --> L
+    J --> L
+    L --> N[Customer Overview]
+    L --> O[Single Customer Prediction]
+    L --> P[Batch Scoring and Retention Simulation]
+    L --> Q[Model Diagnostics]
+    R[GitHub Repository] --> S[Streamlit Community Cloud]
+    S --> L
 ```
+
+The pipeline fits preprocessing within cross-validation, selects the model on training data, and evaluates it once on an untouched holdout set. The retention simulator uses hypothetical assumptions rather than measured intervention effects.
+  
 
 ## Run locally
 
