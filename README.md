@@ -4,8 +4,9 @@
 
 An end-to-end machine learning demonstration that predicts potential telecom customer churn, explains observed churn patterns, and explores **hypothetical** retention outreach scenarios in an interactive dashboard.
 
-**Live demo:** Add the actual Streamlit URL *after deployment*.  
-**Project:** GitHub repository URL goes here *after you publish it*.
+**Live Demo:** [Customer Churn Intelligence Dashboard](https://customer-churn-retention-system-5x.streamlit.app/)
+
+**GitHub Repository:** [View Source Code](https://github.com/jaskaran-pajni/customer-churn-retention-system)
 
 > **Data & ethics:** This project uses the public IBM hypothetical Telco Customer Churn dataset (7,043 records). Predictions are illustrative and are not approved for real customer decisions. The sample data cannot establish whether outreach or discounts cause customers to stay.
 
